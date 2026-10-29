@@ -374,7 +374,7 @@
   <div id="tab-institucional" class="tab-panel active" role="tabpanel">
     <video class="hero-player" data-tab="institucional"
            src="assets/VIDEO/videoplayback.mp4"
-           autoplay muted playsinline controls
+           autoplay playsinline controls
            preload="auto">
     </video>
   </div>
@@ -383,6 +383,19 @@
 
 <script>
 const heroes = Array.from(document.querySelectorAll('.hero-player'));
+// ── som ligado ao abrir ─────────────────────────────────────────
+// Tenta tocar com som; se o navegador bloquear, toca mudo e liga o som no 1º toque/clique.
+heroes.forEach(v => {
+  v.muted = false;
+  const p = v.play();
+  if (p && p.catch) p.catch(() => {
+    v.muted = true;
+    v.play().catch(() => {});
+    const unmute = () => { v.muted = false; v.play().catch(() => {}); };
+    ['pointerdown', 'keydown', 'touchstart'].forEach(ev => window.addEventListener(ev, unmute, { once: true }));
+  });
+});
+
 // ── fechar ──────────────────────────────────────────────────────
 document.getElementById('btn-close').addEventListener('click', closeGallery);
 
