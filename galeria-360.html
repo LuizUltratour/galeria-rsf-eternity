@@ -11,7 +11,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #325825;
+      --bg: #BC6C49;
       --dark: #F2EBDD;
       --gold: #B1904E;
       --border: rgba(242,235,221,0.28);
@@ -46,14 +46,14 @@
     #strip-wrap.collapsed { transform: translateX(calc(-100% - var(--left))); }
     #strip-toggle {
       position: absolute; top: 0; left: 100%; width: 30px; height: 60px; padding: 0; cursor: pointer; pointer-events: auto;
-      background: #087033; border: 1px solid rgba(255,255,255,0.45); border-left: none; box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      background: #BC6C49; border: 1px solid rgba(255,255,255,0.45); border-left: none; box-shadow: 0 6px 20px rgba(0,0,0,0.4);
       display: flex; align-items: center; justify-content: center;
     }
     #strip-toggle svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.35s ease; }
     #strip-wrap.collapsed #strip-toggle svg { transform: rotate(180deg); }
     @media (hover: hover) { #strip-toggle:hover { background: #0a8a3f; } }
     #strip {
-      pointer-events: auto; width: 100%; max-height: 100%; background: #087033; border: 1px solid rgba(255,255,255,0.25); box-shadow: 0 6px 20px rgba(0,0,0,0.4); display: flex; flex-direction: column; gap: 8px; overflow-y: auto; overflow-x: hidden;
+      pointer-events: auto; width: 100%; max-height: 100%; background: #BC6C49; border: 1px solid rgba(255,255,255,0.25); box-shadow: 0 6px 20px rgba(0,0,0,0.4); display: flex; flex-direction: column; gap: 8px; overflow-y: auto; overflow-x: hidden;
       padding: 10px; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.5) transparent;
       -webkit-overflow-scrolling: touch; overscroll-behavior: contain; touch-action: pan-y;
     }
@@ -75,7 +75,7 @@
     }
     .hs-arrow .arr {
       position: absolute; inset: 8px; border-radius: 50%;
-      background: rgba(50,88,37,0.88); border: 2px solid #fff;
+      background: rgba(188,108,73,0.88); border: 2px solid #fff;
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 4px 14px rgba(0,0,0,0.45);
       animation: arrBeat 1.6s ease-in-out infinite;
