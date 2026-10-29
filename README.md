@@ -1,8 +1,8 @@
-# Modern Galeria — Mori Mori Miranda de Castro
+# Modern Galeria — RSF Eternity
 
 Galeria de imagens/plantas/vídeos para injeção via script no 3DVista, hospedada no AWS S3.
 
-**Projeto:** Mori Mori — Miranda de Castro
+**Projeto:** RSF Eternity
 **Tema:** verde imersivo (`#325825` / `#EAFFF7`)
 
 ---
@@ -11,66 +11,64 @@ Galeria de imagens/plantas/vídeos para injeção via script no 3DVista, hospeda
 
 | Arquivo | URL |
 |---------|-----|
-| Galeria | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/mori-mori/galeria-miranda-de-castro/index.html` |
-| Vídeos  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/mori-mori/galeria-miranda-de-castro/video-gallery.html` |
-| 360°    | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/mori-mori/galeria-miranda-de-castro/galeria-360.html` |
-| Script  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/mori-mori/galeria-miranda-de-castro/inject.js` |
+| Galeria | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/index.html` |
+| Vídeos  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/video-gallery.html` |
+| 360°    | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/galeria-360.html` |
+| Script  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/inject.js` |
 
-**S3 path:** `s3://skylineip/Tour Virtual/mori-mori/galeria-miranda-de-castro/`
+**S3 path:** `s3://skylineip/Tour Virtual/rsf/galeria-eternity/`
 
 ---
 
 ## Estrutura de arquivos
 
 ```
-galeria/  (Mori Mori / Miranda de Castro)
+galeria-rsf-eternity/
 ├── index.html              ← galeria de imagens + plantas (auto-suficiente)
-├── video-gallery.html      ← galeria de vídeos (vídeo 3D único)
+├── video-gallery.html      ← galeria de vídeos
 ├── galeria-360.html        ← galeria de panoramas 360° (setas pulsantes + editor)
 ├── diferenciais.html       ← ficha de diferenciais (scroll)
 ├── inject.js               ← loader leve para injeção no 3DVista
 ├── deploy.ps1              ← deploy para o S3 (Windows; sync)
-├── generate_thumbs.ps1     ← gerador de thumbnails (Windows/GDI+, sem deps)
-├── generate_thumbs.py      ← gerador alternativo (Python + Pillow)
+├── generate_thumbs.ps1     ← gerador de thumbnails/large (Windows/GDI+, sem deps)
 └── assets/
-    ├── IMAGENS/              ← renders: fachadas e áreas comuns (Fachada *.png, Scene NN.png)
-    ├── PLANTAS/              ← apartamento decorado, plantas humanizadas e implantação
-    ├── 360/                  ← panoramas equirretangulares 4096×2048 (Scene 01–17.png, só no S3) e web/*.jpg otimizados
-    ├── lib/pannellum/        ← Pannellum 2.5.6 (visualizador 360°, hospedado junto)
-    ├── VIDEO/                ← vídeo 3D .mp4 (gitignored; direto no S3)
-    ├── bg.png                ← imagem de fundo da galeria
-    ├── close-*, voltar-*, proximo-*.png ← botões (normal/hover), exibidos em 45×45 px
-    ├── large/                ← versões ~2560 px (lightbox), geradas
-    ├── BOOK-PRINT.pdf        ← book de referência (gitignored, não sobe ao S3)
-    └── thumbs/               ← gerado automaticamente (espelha a árvore, .jpg)
+    ├── IMAGENS/              ← renders (JPG originais, só no S3)
+    ├── PLANTAS/              ← plantas e implantações (JPG originais, só no S3)
+    ├── VIDEO/                ← vídeo .mp4 (gitignored; direto no S3)
+    ├── thumbs/               ← gerado (900 px) — vai para o git e S3
+    ├── large/                ← gerado (2560 px, lightbox) — vai para o git e S3
+    ├── lib/pannellum/        ← Pannellum (visualizador 360°)
+    └── bg.png, close-*, voltar-*, proximo-*.png
 ```
 
-> **Pastas = categorias.** Os nomes das pastas em `assets/` definem as categorias/subcategorias da galeria. O S3 é case-sensitive: os caminhos em `index.html` devem ter exatamente o mesmo case das pastas/arquivos (ex.: `assets/IMAGENS/...`). Espaços são aceitos (o navegador codifica a URL).
+> **Caminhos:** o S3 é case-sensitive; os `src` em `index.html` devem ter exatamente o mesmo case dos arquivos (`assets/IMAGENS/...`). Espaços são aceitos.
+> **Novo conteúdo:** coloque os JPG em `assets/IMAGENS`/`assets/PLANTAS`, rode `./generate_thumbs.ps1`, adicione o item em `GALLERY_CONFIG.items` (`index.html`) e rode `./deploy.ps1`.
 
 ---
 
-## Categorias da galeria
+## Categorias e submenus
+
+Definidos em `GALLERY_CONFIG.categories` (`index.html`). Cada item usa `category` + `subCategory`.
 
 ### Modo `imagens`
 
-| Categoria | Label | Pasta | Qtde |
-|-----------|-------|-------|------|
-| `fachadas`     | Fachadas | `assets/IMAGENS/` | 7 |
-| `areas-comuns` | Áreas Comuns | `assets/IMAGENS/` | 28 |
-| `apartamento`  | Apartamento Decorado | `assets/PLANTAS/` | 8 (sala de estar/jantar, cozinha, quartos infantis, suítes, banheiro) |
+| Categoria | Submenus |
+|-----------|----------|
+| Fachadas | Fachadas · Vistas Aéreas |
+| Lazer | Piscinas · Esportes · Convivência |
+| Áreas Comuns | Social · Coworking · Serviços |
+| Bem-estar | Fitness · Spa e Sauna |
+| Apartamento Decorado | — |
 
 ### Modo `plantas`
 
-| Tipologia | Label | Pasta | Formato |
-|-----------|-------|-------|---------|
-| `pl-apartamentos` | Apartamento | `assets/PLANTAS/` | Planta Humanizada 01 e 02 |
-| `pl-implantacao`  | Implantação | `assets/PLANTAS/` | Implantação (com e sem fundo) |
+Os submenus de Plantas viram o filtro principal: **Implantação** (geral, sem fundo, rooftop, masterplan) · **Plantas Tipo** (01/05, 02/04, 03, 06) · **Tipos Ampliados** · **Decorados** (01 e 02).
 
-> No modo `all` (padrão) as plantas aparecem como categoria "Plantas" com os dois sub-filtros acima.
+> No modo `all` as plantas aparecem como categoria "Plantas" com os mesmos submenus.
 
 ### Vídeos
 
-`video-gallery.html` toca um único vídeo 3D (`assets/VIDEO/VÍDEO 3D - MIRANDA DE CASTRO - COM FRASES.mp4`, ~320 MB, vertical 2160×3884). O arquivo é grande demais para o GitHub: fica só no S3 (`assets/VIDEO/` está no .gitignore).
+`video-gallery.html` toca `assets/VIDEO/videoplayback.mp4`. A pasta `assets/VIDEO/` está no .gitignore (vai direto para o S3).
 
 ---
 
@@ -120,7 +118,7 @@ ignora `thumbs/`, `videos/` e o PDF. Também gera `large/` (~2560 px, q88) usado
 ### Sync completo
 
 ```bash
-aws s3 sync . "s3://skylineip/Tour Virtual/mori-mori/galeria-miranda-de-castro/" \
+aws s3 sync . "s3://skylineip/Tour Virtual/rsf/galeria-eternity/" \
   --exclude ".git/*" --exclude ".claude/*" --exclude "*.py" \
   --exclude "README.md" --exclude ".gitattributes" --exclude "*.md" \
   --exclude "deploy.ps1" --exclude "*.pdf" \
@@ -130,10 +128,10 @@ aws s3 sync . "s3://skylineip/Tour Virtual/mori-mori/galeria-miranda-de-castro/"
 ### Atualizar só index.html e inject.js
 
 ```bash
-aws s3 cp index.html "s3://skylineip/Tour Virtual/mori-mori/galeria-miranda-de-castro/index.html" \
+aws s3 cp index.html "s3://skylineip/Tour Virtual/rsf/galeria-eternity/index.html" \
   --cache-control "no-cache,no-store,must-revalidate"
 
-aws s3 cp inject.js "s3://skylineip/Tour Virtual/mori-mori/galeria-miranda-de-castro/inject.js" \
+aws s3 cp inject.js "s3://skylineip/Tour Virtual/rsf/galeria-eternity/inject.js" \
   --cache-control "no-cache,no-store,must-revalidate"
 ```
 
@@ -148,7 +146,7 @@ aws s3 cp inject.js "s3://skylineip/Tour Virtual/mori-mori/galeria-miranda-de-ca
 ```js
 (function(){
   var s = document.createElement('script');
-  s.src = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/mori-mori/galeria-miranda-de-castro/inject.js?v=' + Date.now();
+  s.src = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/inject.js?v=' + Date.now();
   document.head.appendChild(s);
 })();
 ```
@@ -220,7 +218,7 @@ Para abrir direto num local: `galeria-360.html?scene=s05`.
 
 ## Cores e tipografia
 
-Tema **verde imersivo** do Mori Mori — Miranda de Castro:
+Tema **verde imersivo** do RSF Eternity:
 
 | Token CSS | Valor | Papel |
 |-----------|-------|-------|

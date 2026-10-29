@@ -1,10 +1,10 @@
 (function (w, d) {
   'use strict';
 
-  var GALLERY_URL        = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/mori-mori/galeria-miranda-de-castro/index.html';
-  var VIDEO_GALLERY_URL  = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/mori-mori/galeria-miranda-de-castro/video-gallery.html';
-  var GALERIA_360_URL    = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/mori-mori/galeria-miranda-de-castro/galeria-360.html';
-  var DIFERENCIAIS_URL   = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/mori-mori/galeria-miranda-de-castro/diferenciais.html';
+  var GALLERY_URL        = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/index.html';
+  var VIDEO_GALLERY_URL  = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/video-gallery.html';
+  var GALERIA_360_URL    = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/galeria-360.html';
+  var DIFERENCIAIS_URL   = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/diferenciais.html';
 
   var overlay    = null;
   var msgHandler = null;

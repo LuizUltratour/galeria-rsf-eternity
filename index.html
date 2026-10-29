@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galeria — Mori Mori — Miranda de Castro</title>
+  <title>Galeria — RSF Eternity</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* Mori Mori — Miranda de Castro — tema verde imersivo.
+      /* RSF Eternity — tema verde imersivo.
          --bg = fundo marrom (primária) · --dark = foreground claro (secundária) · --accent = secundária usada em destaque/estado ativo */
       --bg: #325825;             /* marrom principal — cor primária */
       --surface: #3E6330;        /* superfície de card (marrom +luz) */
@@ -921,77 +921,158 @@
 // os campos src com os nomes exatos dos arquivos.
 // ================================================================
 const GALLERY_CONFIG = {
-  projectName: 'MORI MORI — MIRANDA DE CASTRO',
+  projectName: 'RSF ETERNITY',
   projectSub:  '',
 
   categories: [
-    { id: 'fachadas',     label: 'Fachadas' },
-    { id: 'areas-comuns', label: 'Áreas Comuns' },
-    { id: 'apartamento',  label: 'Apartamento Decorado' },
+    {
+      id: 'fachadas', label: 'Fachadas',
+      subs: [
+        { id: 'fa-fachadas', label: 'Fachadas' },
+        { id: 'fa-aereas', label: 'Vistas Aéreas' },
+      ]
+    },
+    {
+      id: 'lazer', label: 'Lazer',
+      subs: [
+        { id: 'lz-piscinas', label: 'Piscinas' },
+        { id: 'lz-esportes', label: 'Esportes' },
+        { id: 'lz-convivencia', label: 'Convivência' },
+      ]
+    },
+    {
+      id: 'areas-comuns', label: 'Áreas Comuns',
+      subs: [
+        { id: 'ac-social', label: 'Social' },
+        { id: 'ac-coworking', label: 'Coworking' },
+        { id: 'ac-servicos', label: 'Serviços' },
+      ]
+    },
+    {
+      id: 'bem-estar', label: 'Bem-estar',
+      subs: [
+        { id: 'be-fitness', label: 'Fitness' },
+        { id: 'be-spa', label: 'Spa e Sauna' },
+      ]
+    },
+    { id: 'apartamento', label: 'Apartamento Decorado' },
     {
       id: 'plantas', label: 'Plantas',
       subs: [
-        { id: 'pl-apartamentos', label: 'Apartamento' },
-        { id: 'pl-implantacao',  label: 'Implantação' },
+        { id: 'pl-implantacao', label: 'Implantação' },
+        { id: 'pl-tipos', label: 'Plantas Tipo' },
+        { id: 'pl-ampliadas', label: 'Tipos Ampliados' },
+        { id: 'pl-decorados', label: 'Decorados' },
       ]
     },
   ],
 
   items: [
-    // ═══ FACHADAS ═══
-    { id:1, type:'image', category:'fachadas', title:'Fachada Diurna', src:'assets/IMAGENS/Fachada Diurna.png', thumb:'assets/thumbs/IMAGENS/Fachada Diurna.jpg' },
-    { id:2, type:'image', category:'fachadas', title:'Fachada Noturna', src:'assets/IMAGENS/Fachada Noturna.png', thumb:'assets/thumbs/IMAGENS/Fachada Noturna.jpg' },
-    { id:3, type:'image', category:'fachadas', title:'Acesso Principal', src:'assets/IMAGENS/Scene 01.png', thumb:'assets/thumbs/IMAGENS/Scene 01.jpg' },
-    { id:4, type:'image', category:'fachadas', title:'Vista da Avenida', src:'assets/IMAGENS/Scene 02.png', thumb:'assets/thumbs/IMAGENS/Scene 02.jpg' },
-    { id:5, type:'image', category:'fachadas', title:'Acesso ao Entardecer', src:'assets/IMAGENS/Scene 03.png', thumb:'assets/thumbs/IMAGENS/Scene 03.jpg' },
-    { id:6, type:'image', category:'fachadas', title:'Vista Aérea do Condomínio', src:'assets/IMAGENS/Scene 43.png', thumb:'assets/thumbs/IMAGENS/Scene 43.jpg' },
-    { id:7, type:'image', category:'fachadas', title:'Comércio e Avenida', src:'assets/IMAGENS/Scene 3.png', thumb:'assets/thumbs/IMAGENS/Scene 3.jpg' },
+    // ═══ FACHADAS / fa-fachadas ═══
+    { id:1, type:'image', category:'fachadas', subCategory:'fa-fachadas', title:'Torres ao Entardecer', src:'assets/IMAGENS/RSF_RP41_ST_01_Fachada_R07.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST_01_Fachada_R07.jpg' },
+    { id:2, type:'image', category:'fachadas', subCategory:'fa-fachadas', title:'Fachada Noturna', src:'assets/IMAGENS/RSF_RP41_ST_02_Fachada_R06.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST_02_Fachada_R06.jpg' },
+    { id:3, type:'image', category:'fachadas', subCategory:'fa-fachadas', title:'Fachada e Paisagismo', src:'assets/IMAGENS/RSF_RP41_ST1_R01_04_Fachada.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R01_04_Fachada.jpg' },
+    { id:4, type:'image', category:'fachadas', subCategory:'fa-fachadas', title:'Portaria', src:'assets/IMAGENS/RSF_RP41_ST1_R07_03_Portaria.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R07_03_Portaria.jpg' },
 
-    // ═══ ÁREAS COMUNS ═══
-    { id:8, type:'image', category:'areas-comuns', title:'Piscina e Deck', src:'assets/IMAGENS/Scene 5.png', thumb:'assets/thumbs/IMAGENS/Scene 5.jpg' },
-    { id:9, type:'image', category:'areas-comuns', title:'Piscina', src:'assets/IMAGENS/Scene 6.png', thumb:'assets/thumbs/IMAGENS/Scene 6.jpg' },
-    { id:10, type:'image', category:'areas-comuns', title:'Pérgola', src:'assets/IMAGENS/Scene 8.png', thumb:'assets/thumbs/IMAGENS/Scene 8.jpg' },
-    { id:11, type:'image', category:'areas-comuns', title:'Praça Arborizada', src:'assets/IMAGENS/Scene 9.png', thumb:'assets/thumbs/IMAGENS/Scene 9.jpg' },
-    { id:12, type:'image', category:'areas-comuns', title:'Playground e Fitness ao Ar Livre', src:'assets/IMAGENS/Scene 10.png', thumb:'assets/thumbs/IMAGENS/Scene 10.jpg' },
-    { id:13, type:'image', category:'areas-comuns', title:'Praça com Gazebo', src:'assets/IMAGENS/Scene 11.png', thumb:'assets/thumbs/IMAGENS/Scene 11.jpg' },
-    { id:14, type:'image', category:'areas-comuns', title:'Eletroposto', src:'assets/IMAGENS/Scene 12.png', thumb:'assets/thumbs/IMAGENS/Scene 12.jpg' },
-    { id:15, type:'image', category:'areas-comuns', title:'Espaço Gourmet', src:'assets/IMAGENS/Scene 13.png', thumb:'assets/thumbs/IMAGENS/Scene 13.jpg' },
-    { id:16, type:'image', category:'areas-comuns', title:'Quadra de Vôlei de Areia', src:'assets/IMAGENS/Scene 14.png', thumb:'assets/thumbs/IMAGENS/Scene 14.jpg' },
-    { id:17, type:'image', category:'areas-comuns', title:'Gourmet e Pérgola', src:'assets/IMAGENS/Scene 15.png', thumb:'assets/thumbs/IMAGENS/Scene 15.jpg' },
-    { id:18, type:'image', category:'areas-comuns', title:'Quiosque com Deck', src:'assets/IMAGENS/Scene 16.png', thumb:'assets/thumbs/IMAGENS/Scene 16.jpg' },
-    { id:19, type:'image', category:'areas-comuns', title:'Academia (Fachada)', src:'assets/IMAGENS/Scene 17.png', thumb:'assets/thumbs/IMAGENS/Scene 17.jpg' },
-    { id:20, type:'image', category:'areas-comuns', title:'Portaria', src:'assets/IMAGENS/Scene 18.png', thumb:'assets/thumbs/IMAGENS/Scene 18.jpg' },
-    { id:21, type:'image', category:'areas-comuns', title:'Academia (Vista Externa)', src:'assets/IMAGENS/Scene 20.png', thumb:'assets/thumbs/IMAGENS/Scene 20.jpg' },
-    { id:22, type:'image', category:'areas-comuns', title:'Quadras e Estacionamento', src:'assets/IMAGENS/Scene 21.png', thumb:'assets/thumbs/IMAGENS/Scene 21.jpg' },
-    { id:23, type:'image', category:'areas-comuns', title:'Praça de Convivência', src:'assets/IMAGENS/Scene 22.png', thumb:'assets/thumbs/IMAGENS/Scene 22.jpg' },
-    { id:24, type:'image', category:'areas-comuns', title:'Mercado', src:'assets/IMAGENS/Scene 24.png', thumb:'assets/thumbs/IMAGENS/Scene 24.jpg' },
-    { id:25, type:'image', category:'areas-comuns', title:'Estacionamento e Torres', src:'assets/IMAGENS/Scene 25.png', thumb:'assets/thumbs/IMAGENS/Scene 25.jpg' },
-    { id:26, type:'image', category:'areas-comuns', title:'Alameda de Palmeiras', src:'assets/IMAGENS/Scene 26.png', thumb:'assets/thumbs/IMAGENS/Scene 26.jpg' },
-    { id:27, type:'image', category:'areas-comuns', title:'Piscina com Guarda-Sóis', src:'assets/IMAGENS/Scene 27.png', thumb:'assets/thumbs/IMAGENS/Scene 27.jpg' },
-    { id:28, type:'image', category:'areas-comuns', title:'Vista Aérea da Piscina', src:'assets/IMAGENS/Scene 29.png', thumb:'assets/thumbs/IMAGENS/Scene 29.jpg' },
-    { id:29, type:'image', category:'areas-comuns', title:'Torres', src:'assets/IMAGENS/Scene 30.png', thumb:'assets/thumbs/IMAGENS/Scene 30.jpg' },
-    { id:30, type:'image', category:'areas-comuns', title:'Torres e Paisagismo', src:'assets/IMAGENS/Scene 31.png', thumb:'assets/thumbs/IMAGENS/Scene 31.jpg' },
-    { id:31, type:'image', category:'areas-comuns', title:'Playground', src:'assets/IMAGENS/Scene 32.png', thumb:'assets/thumbs/IMAGENS/Scene 32.jpg' },
-    { id:32, type:'image', category:'areas-comuns', title:'Academia', src:'assets/IMAGENS/Scene 35.png', thumb:'assets/thumbs/IMAGENS/Scene 35.jpg' },
-    { id:33, type:'image', category:'areas-comuns', title:'Academia Funcional', src:'assets/IMAGENS/Scene 36.png', thumb:'assets/thumbs/IMAGENS/Scene 36.jpg' },
-    { id:34, type:'image', category:'areas-comuns', title:'Salão de Convivência', src:'assets/IMAGENS/Scene 37.png', thumb:'assets/thumbs/IMAGENS/Scene 37.jpg' },
-    { id:35, type:'image', category:'areas-comuns', title:'Lounge', src:'assets/IMAGENS/Scene 38.png', thumb:'assets/thumbs/IMAGENS/Scene 38.jpg' },
+    // ═══ FACHADAS / fa-aereas ═══
+    { id:5, type:'image', category:'fachadas', subCategory:'fa-aereas', title:'Varandas e Vista da Cidade', src:'assets/IMAGENS/RSF_RP41_ST_R02_29_Voo_Passaro_Fachada.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST_R02_29_Voo_Passaro_Fachada.jpg' },
+    { id:6, type:'image', category:'fachadas', subCategory:'fa-aereas', title:'Cobertura ao Pôr do Sol', src:'assets/IMAGENS/RSF_RP41_ST_R02_25_Voo_Passaro_C01.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST_R02_25_Voo_Passaro_C01.jpg' },
+    { id:7, type:'image', category:'fachadas', subCategory:'fa-aereas', title:'Torre ao Anoitecer', src:'assets/IMAGENS/RSF_RP41_ST1_R04_24_Voo_passaro.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R04_24_Voo_passaro.jpg' },
+    { id:8, type:'image', category:'fachadas', subCategory:'fa-aereas', title:'Torres ao Crepúsculo', src:'assets/IMAGENS/RSF_RP41_ST1_R04_25_Voo de Passaro.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R04_25_Voo de Passaro.jpg' },
+    { id:9, type:'image', category:'fachadas', subCategory:'fa-aereas', title:'Vista Aérea das Piscinas', src:'assets/IMAGENS/RSF_RP41_ST1_R04_23_Voo de Passaro Piscina.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R04_23_Voo de Passaro Piscina.jpg' },
 
-    // ═══ APARTAMENTO DECORADO ═══
-    { id:36, type:'image', category:'apartamento', title:'Sala de Estar', src:'assets/PLANTAS/Living 01.png', thumb:'assets/thumbs/PLANTAS/Living 01.jpg' },
-    { id:37, type:'image', category:'apartamento', title:'Sala de Jantar', src:'assets/PLANTAS/Living 02.png', thumb:'assets/thumbs/PLANTAS/Living 02.jpg' },
-    { id:38, type:'image', category:'apartamento', title:'Cozinha', src:'assets/PLANTAS/Cozinha.png', thumb:'assets/thumbs/PLANTAS/Cozinha.jpg' },
-    { id:39, type:'image', category:'apartamento', title:'Quarto Infantil 01', src:'assets/PLANTAS/Quarto 01.png', thumb:'assets/thumbs/PLANTAS/Quarto 01.jpg' },
-    { id:40, type:'image', category:'apartamento', title:'Quarto Infantil 02', src:'assets/PLANTAS/Quarto 02.png', thumb:'assets/thumbs/PLANTAS/Quarto 02.jpg' },
-    { id:41, type:'image', category:'apartamento', title:'Suíte 01', src:'assets/PLANTAS/Suíte 01.png', thumb:'assets/thumbs/PLANTAS/Suíte 01.jpg' },
-    { id:42, type:'image', category:'apartamento', title:'Suíte 02', src:'assets/PLANTAS/Suíte 02.png', thumb:'assets/thumbs/PLANTAS/Suíte 02.jpg' },
-    { id:43, type:'image', category:'apartamento', title:'Banheiro', src:'assets/PLANTAS/Banheiro.png', thumb:'assets/thumbs/PLANTAS/Banheiro.jpg' },
+    // ═══ LAZER / lz-piscinas ═══
+    { id:10, type:'image', category:'lazer', subCategory:'lz-piscinas', title:'Piscina com Borda Infinita', src:'assets/IMAGENS/RSF_RP41_ST_17_Piscina molhado_011.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST_17_Piscina molhado_011.jpg' },
+    { id:11, type:'image', category:'lazer', subCategory:'lz-piscinas', title:'Piscina Coberta', src:'assets/IMAGENS/RSF_RP41_ST1_R04_14_Piscina Coberta.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R04_14_Piscina Coberta.jpg' },
+    { id:12, type:'image', category:'lazer', subCategory:'lz-piscinas', title:'Piscina Family Space', src:'assets/IMAGENS/RSF_RP41_ST1_R04_20_Piscina Family Space.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R04_20_Piscina Family Space.jpg' },
+    { id:13, type:'image', category:'lazer', subCategory:'lz-piscinas', title:'Family Space e Piscina Rooftop', src:'assets/IMAGENS/RSF_RP41_ST1_R03_27_Voo Family Space.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R03_27_Voo Family Space.jpg' },
+    { id:14, type:'image', category:'lazer', subCategory:'lz-piscinas', title:'Piscina Aquecida', src:'assets/IMAGENS/RSF_RP41_ST1_COLOR_28_Sauna01.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_COLOR_28_Sauna01.jpg' },
+    { id:15, type:'image', category:'lazer', subCategory:'lz-piscinas', title:'Piscina Infantil', src:'assets/IMAGENS/RSF_RP41_ST1_R01_16_Piscina infantil.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R01_16_Piscina infantil.jpg' },
+    { id:16, type:'image', category:'lazer', subCategory:'lz-piscinas', title:'Piso Molhado', src:'assets/IMAGENS/RSF_RP41_ST1_R02_15_Piso Molhado_v1.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R02_15_Piso Molhado_v1.jpg' },
 
-    // ═══ PLANTAS ═══
-    { id:44, type:'image', category:'plantas', subCategory:'pl-apartamentos', isPlant:true, title:'Planta Humanizada 01', src:'assets/PLANTAS/Planta Humanizada.png', thumb:'assets/thumbs/PLANTAS/Planta Humanizada.jpg' },
-    { id:45, type:'image', category:'plantas', subCategory:'pl-apartamentos', isPlant:true, title:'Planta Humanizada 02', src:'assets/PLANTAS/Planta Humanizada 02.png', thumb:'assets/thumbs/PLANTAS/Planta Humanizada 02.jpg' },
-    { id:46, type:'image', category:'plantas', subCategory:'pl-implantacao', isPlant:true, title:'Implantação', src:'assets/PLANTAS/Scene 43.png', thumb:'assets/thumbs/PLANTAS/Scene 43.jpg' },
-    { id:47, type:'image', category:'plantas', subCategory:'pl-implantacao', isPlant:true, title:'Implantação (Sem Fundo)', src:'assets/PLANTAS/Scene 43 SEM FUNDO.png', thumb:'assets/thumbs/PLANTAS/Scene 43 SEM FUNDO.jpg' },
+    // ═══ LAZER / lz-esportes ═══
+    { id:17, type:'image', category:'lazer', subCategory:'lz-esportes', title:'Quadra de Tênis', src:'assets/IMAGENS/RSF_RP41_ST_R02_06_Quadra Tennis.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST_R02_06_Quadra Tennis.jpg' },
+    { id:18, type:'image', category:'lazer', subCategory:'lz-esportes', title:'Beach Tennis', src:'assets/IMAGENS/RSF_RP41_ST1_R03_13_Beach Tennis.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R03_13_Beach Tennis.jpg' },
+    { id:19, type:'image', category:'lazer', subCategory:'lz-esportes', title:'Quadra Poliesportiva', src:'assets/IMAGENS/RSF_RP41_ST1_R04_07_Quadra Poliesportiva.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R04_07_Quadra Poliesportiva.jpg' },
+    { id:20, type:'image', category:'lazer', subCategory:'lz-esportes', title:'Pista de Patins', src:'assets/IMAGENS/RSF_RP41_ST1_R02_10_Pista_de_patins.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R02_10_Pista_de_patins.jpg' },
+    { id:21, type:'image', category:'lazer', subCategory:'lz-esportes', title:'Apoio da Quadra', src:'assets/IMAGENS/RSF_RP41_Apoio_Quadra_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Apoio_Quadra_HR.jpg' },
+
+    // ═══ LAZER / lz-convivencia ═══
+    { id:22, type:'image', category:'lazer', subCategory:'lz-convivencia', title:'Praça de Encontro', src:'assets/IMAGENS/RSF_RP41_ST1_R03_09_Praca_encontro_v1.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R03_09_Praca_encontro_v1.jpg' },
+    { id:23, type:'image', category:'lazer', subCategory:'lz-convivencia', title:'Estar e Bate-papo Rooftop', src:'assets/IMAGENS/RSF_RP41_ST1_R03_22_Descanso_Estar_Bate_Papo_Rooftop.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R03_22_Descanso_Estar_Bate_Papo_Rooftop.jpg' },
+    { id:24, type:'image', category:'lazer', subCategory:'lz-convivencia', title:'Praça do Piquenique', src:'assets/IMAGENS/RSF_RP41_ST1_R05_05_Praca Piquinique.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R05_05_Praca Piquinique.jpg' },
+    { id:25, type:'image', category:'lazer', subCategory:'lz-convivencia', title:'Praça entre Prédios', src:'assets/IMAGENS/RSF_RP41_ST1_R05_18_Praca entre predios.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R05_18_Praca entre predios.jpg' },
+    { id:26, type:'image', category:'lazer', subCategory:'lz-convivencia', title:'Churrasqueira', src:'assets/IMAGENS/RSF_RP41_ST1_R03_12_Churrasqueira.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R03_12_Churrasqueira.jpg' },
+    { id:27, type:'image', category:'lazer', subCategory:'lz-convivencia', title:'Family Space', src:'assets/IMAGENS/RSF_RP41_ST1_19_Family_Space_R01.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_19_Family_Space_R01.jpg' },
+    { id:28, type:'image', category:'lazer', subCategory:'lz-convivencia', title:'Family Space 02', src:'assets/IMAGENS/RSF_RP41_ST1_19_Family_Space_R02.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_19_Family_Space_R02.jpg' },
+    { id:29, type:'image', category:'lazer', subCategory:'lz-convivencia', title:'Playground', src:'assets/IMAGENS/RSF_RP41_ST1_11_R03_Playground.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_11_R03_Playground.jpg' },
+    { id:30, type:'image', category:'lazer', subCategory:'lz-convivencia', title:'Pet Place', src:'assets/IMAGENS/RSF_RP41_ST_08_Pet Place_R02.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST_08_Pet Place_R02.jpg' },
+
+    // ═══ AREAS-COMUNS / ac-social ═══
+    { id:31, type:'image', category:'areas-comuns', subCategory:'ac-social', title:'Lobby', src:'assets/IMAGENS/RSF_RP41_Lobby_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Lobby_HR.jpg' },
+    { id:32, type:'image', category:'areas-comuns', subCategory:'ac-social', title:'Espaço Gourmet', src:'assets/IMAGENS/RSF_RP41_Gourmet_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Gourmet_HR.jpg' },
+    { id:33, type:'image', category:'areas-comuns', subCategory:'ac-social', title:'Salão de Festas Adulto', src:'assets/IMAGENS/RSF_RP41_Festas_Adulto_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Festas_Adulto_HR.jpg' },
+    { id:34, type:'image', category:'areas-comuns', subCategory:'ac-social', title:'Salão de Festas Infantil', src:'assets/IMAGENS/RSF_RP41_Salao_Festas_Infantil_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Salao_Festas_Infantil_HR.jpg' },
+    { id:35, type:'image', category:'areas-comuns', subCategory:'ac-social', title:'Brinquedoteca', src:'assets/IMAGENS/RSF_RP41_Brinquedoteca_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Brinquedoteca_HR.jpg' },
+    { id:36, type:'image', category:'areas-comuns', subCategory:'ac-social', title:'Sport Bar', src:'assets/IMAGENS/RSF_RP41_Sport_Bar_01_HR 1.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Sport_Bar_01_HR 1.jpg' },
+    { id:37, type:'image', category:'areas-comuns', subCategory:'ac-social', title:'Sport Bar – Carteado', src:'assets/IMAGENS/RSF_RP41_Sport_Bar_02_HR 1.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Sport_Bar_02_HR 1.jpg' },
+    { id:38, type:'image', category:'areas-comuns', subCategory:'ac-social', title:'Sala de Jogos', src:'assets/IMAGENS/RSF_RP41_Sala_Jogos_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Sala_Jogos_HR.jpg' },
+    { id:39, type:'image', category:'areas-comuns', subCategory:'ac-social', title:'Cinema', src:'assets/IMAGENS/RSF_RP41_Cinema_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Cinema_HR.jpg' },
+    { id:40, type:'image', category:'areas-comuns', subCategory:'ac-social', title:'Espaço Youtuber', src:'assets/IMAGENS/RSF_RP41_Espaco_Youtube_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Espaco_Youtube_HR.jpg' },
+
+    // ═══ AREAS-COMUNS / ac-coworking ═══
+    { id:41, type:'image', category:'areas-comuns', subCategory:'ac-coworking', title:'Coworking', src:'assets/IMAGENS/RSF_RP41_Coworking_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Coworking_HR.jpg' },
+    { id:42, type:'image', category:'areas-comuns', subCategory:'ac-coworking', title:'Sala de Reunião', src:'assets/IMAGENS/RSF_RP41_Reuniao_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Reuniao_HR.jpg' },
+
+    // ═══ AREAS-COMUNS / ac-servicos ═══
+    { id:43, type:'image', category:'areas-comuns', subCategory:'ac-servicos', title:'Mini Market', src:'assets/IMAGENS/RSF_RP41_Mini_Market_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Mini_Market_HR.jpg' },
+    { id:44, type:'image', category:'areas-comuns', subCategory:'ac-servicos', title:'Delivery', src:'assets/IMAGENS/RSF_RP41_Delivery_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Delivery_HR.jpg' },
+    { id:45, type:'image', category:'areas-comuns', subCategory:'ac-servicos', title:'Depósitos', src:'assets/IMAGENS/RSF_RP41_Deposito_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Deposito_HR.jpg' },
+    { id:46, type:'image', category:'areas-comuns', subCategory:'ac-servicos', title:'Bicicletário', src:'assets/IMAGENS/RSF_RP41_Bicicletario_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Bicicletario_HR.jpg' },
+    { id:47, type:'image', category:'areas-comuns', subCategory:'ac-servicos', title:'Car Wash', src:'assets/IMAGENS/RSF_RP41_Car_Wash_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Car_Wash_HR.jpg' },
+    { id:48, type:'image', category:'areas-comuns', subCategory:'ac-servicos', title:'Pet Care', src:'assets/IMAGENS/RSF_RP41_Pet_Care_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Pet_Care_HR.jpg' },
+    { id:49, type:'image', category:'areas-comuns', subCategory:'ac-servicos', title:'Beauty', src:'assets/IMAGENS/RSF_RP41_Beauty_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Beauty_HR.jpg' },
+
+    // ═══ BEM-ESTAR / be-fitness ═══
+    { id:50, type:'image', category:'bem-estar', subCategory:'be-fitness', title:'Academia', src:'assets/IMAGENS/RSF_RP41_Fitness_Ang_B_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Fitness_Ang_B_HR.jpg' },
+    { id:51, type:'image', category:'bem-estar', subCategory:'be-fitness', title:'Academia – Vista Panorâmica', src:'assets/IMAGENS/RSF_RP41_Fitness_Ang_D_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Fitness_Ang_D_HR.jpg' },
+    { id:52, type:'image', category:'bem-estar', subCategory:'be-fitness', title:'Sala de Ciclismo', src:'assets/IMAGENS/RSF_RP41_Ciclismo_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Ciclismo_HR.jpg' },
+    { id:53, type:'image', category:'bem-estar', subCategory:'be-fitness', title:'Pilates', src:'assets/IMAGENS/RSF_RP41_Pilates_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Pilates_HR.jpg' },
+    { id:54, type:'image', category:'bem-estar', subCategory:'be-fitness', title:'Fitness Externo', src:'assets/IMAGENS/RSF_RP41_ST1_R05_21_Fitness externo.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_ST1_R05_21_Fitness externo.jpg' },
+
+    // ═══ BEM-ESTAR / be-spa ═══
+    { id:55, type:'image', category:'bem-estar', subCategory:'be-spa', title:'Spa', src:'assets/IMAGENS/RSF_RP41_Spa_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Spa_HR.jpg' },
+    { id:56, type:'image', category:'bem-estar', subCategory:'be-spa', title:'Sauna', src:'assets/IMAGENS/RSF_RP41_Sauna_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Sauna_HR.jpg' },
+    { id:57, type:'image', category:'bem-estar', subCategory:'be-spa', title:'Sala de Massagem', src:'assets/IMAGENS/RSF_RP41_Massagem_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Massagem_HR.jpg' },
+
+    // ═══ APARTAMENTO ═══
+    { id:58, type:'image', category:'apartamento', title:'Living 01', src:'assets/IMAGENS/RSF_RP41_Living_01_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Living_01_HR.jpg' },
+    { id:59, type:'image', category:'apartamento', title:'Living 02', src:'assets/IMAGENS/RSF_RP41_Living_02_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Living_02_HR.jpg' },
+    { id:60, type:'image', category:'apartamento', title:'Living 03', src:'assets/IMAGENS/RSF_RP41_Living_03_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Living_03_HR.jpg' },
+    { id:61, type:'image', category:'apartamento', title:'Living 06', src:'assets/IMAGENS/RSF_RP41_Living_06_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Living_06_HR.jpg' },
+    { id:62, type:'image', category:'apartamento', title:'Decorado – Living e Cozinha', src:'assets/IMAGENS/RSF_RP41_Decorado_02_HR.jpg', thumb:'assets/thumbs/IMAGENS/RSF_RP41_Decorado_02_HR.jpg' },
+
+    // ═══ PLANTAS / pl-implantacao ═══
+    { id:63, type:'image', category:'plantas', subCategory:'pl-implantacao', isPlant:true, title:'Implantação Geral', src:'assets/PLANTAS/IMPL GERAL_v2.jpg', thumb:'assets/thumbs/PLANTAS/IMPL GERAL_v2.jpg' },
+    { id:64, type:'image', category:'plantas', subCategory:'pl-implantacao', isPlant:true, title:'Implantação Geral (Sem Fundo)', src:'assets/PLANTAS/PL_IMPLANTACAO_HR_SEM FUNDO.jpg', thumb:'assets/thumbs/PLANTAS/PL_IMPLANTACAO_HR_SEM FUNDO.jpg' },
+    { id:65, type:'image', category:'plantas', subCategory:'pl-implantacao', isPlant:true, title:'Implantação Rooftop', src:'assets/PLANTAS/RSF_RP41_FP1_R04_20_Implantacao_Rooftop.jpg', thumb:'assets/thumbs/PLANTAS/RSF_RP41_FP1_R04_20_Implantacao_Rooftop.jpg' },
+    { id:66, type:'image', category:'plantas', subCategory:'pl-implantacao', isPlant:true, title:'Masterplan', src:'assets/PLANTAS/RSF_MasterPlan_I_Melville_R05.jpg', thumb:'assets/thumbs/PLANTAS/RSF_MasterPlan_I_Melville_R05.jpg' },
+
+    // ═══ PLANTAS / pl-tipos ═══
+    { id:67, type:'image', category:'plantas', subCategory:'pl-tipos', isPlant:true, title:'Planta Tipo 01/05', src:'assets/PLANTAS/RSF_RP41_Tipo_01_05_HR.jpg', thumb:'assets/thumbs/PLANTAS/RSF_RP41_Tipo_01_05_HR.jpg' },
+    { id:68, type:'image', category:'plantas', subCategory:'pl-tipos', isPlant:true, title:'Planta Tipo 02/04', src:'assets/PLANTAS/RSF_RP41_Tipo_02_04_HR.jpg', thumb:'assets/thumbs/PLANTAS/RSF_RP41_Tipo_02_04_HR.jpg' },
+    { id:69, type:'image', category:'plantas', subCategory:'pl-tipos', isPlant:true, title:'Planta Tipo 03', src:'assets/PLANTAS/RSF_RP41_Tipo_03_HR.jpg', thumb:'assets/thumbs/PLANTAS/RSF_RP41_Tipo_03_HR.jpg' },
+    { id:70, type:'image', category:'plantas', subCategory:'pl-tipos', isPlant:true, title:'Planta Tipo 06', src:'assets/PLANTAS/RSF_RP41_Tipo_06_HR.jpg', thumb:'assets/thumbs/PLANTAS/RSF_RP41_Tipo_06_HR.jpg' },
+
+    // ═══ PLANTAS / pl-ampliadas ═══
+    { id:71, type:'image', category:'plantas', subCategory:'pl-ampliadas', isPlant:true, title:'Tipo 01/05 – Ampliado', src:'assets/PLANTAS/RSF_RP41_Tipo_01_05_Ampliado_HR.jpg', thumb:'assets/thumbs/PLANTAS/RSF_RP41_Tipo_01_05_Ampliado_HR.jpg' },
+    { id:72, type:'image', category:'plantas', subCategory:'pl-ampliadas', isPlant:true, title:'Tipo 02/04 – Ampliado', src:'assets/PLANTAS/RSF_RP41_Tipo_02_04_Ampliado_HR.jpg', thumb:'assets/thumbs/PLANTAS/RSF_RP41_Tipo_02_04_Ampliado_HR.jpg' },
+    { id:73, type:'image', category:'plantas', subCategory:'pl-ampliadas', isPlant:true, title:'Tipo 03 – Ampliado', src:'assets/PLANTAS/RSF_RP41_Tipo_03_Ampliado_HR.jpg', thumb:'assets/thumbs/PLANTAS/RSF_RP41_Tipo_03_Ampliado_HR.jpg' },
+    { id:74, type:'image', category:'plantas', subCategory:'pl-ampliadas', isPlant:true, title:'Tipo 06 – Ampliado', src:'assets/PLANTAS/RSF_RP41_Tipo_06_Ampliado_HR.jpg', thumb:'assets/thumbs/PLANTAS/RSF_RP41_Tipo_06_Ampliado_HR.jpg' },
+
+    // ═══ PLANTAS / pl-decorados ═══
+    { id:75, type:'image', category:'plantas', subCategory:'pl-decorados', isPlant:true, title:'Tipo Decorado 01', src:'assets/PLANTAS/RSF_RP41_Tipo_Decorado_01_HR.jpg', thumb:'assets/thumbs/PLANTAS/RSF_RP41_Tipo_Decorado_01_HR.jpg' },
+    { id:76, type:'image', category:'plantas', subCategory:'pl-decorados', isPlant:true, title:'Tipo Decorado 02', src:'assets/PLANTAS/RSF_RP41_Tipo_Decorado_02_HR copy.jpg', thumb:'assets/thumbs/PLANTAS/RSF_RP41_Tipo_Decorado_02_HR copy.jpg' },
   ],
 };
 

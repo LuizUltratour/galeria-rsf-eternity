@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Galeria 360° — Mori Mori — Miranda de Castro</title>
+  <title>Galeria 360° — RSF Eternity</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -198,7 +198,7 @@ const LINKS = {
 const $ = id => document.getElementById(id);
 const params = new URLSearchParams(location.search);
 const EDIT = params.get('edit') === '1';
-const LS_KEY = 'g360-links-miranda';
+const LS_KEY = 'g360-links-eternity';
 const byId = Object.fromEntries(SCENES.map(s => [s.id, s]));
 const enc = f => 'assets/360/web/' + encodeURIComponent(f) + '.jpg';
 const encT = f => 'assets/thumbs/360/' + encodeURIComponent(f) + '.jpg';
