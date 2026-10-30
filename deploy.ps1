@@ -43,7 +43,7 @@ else {
   aws s3 sync . "$Bucket/" `
     --exclude ".git/*" --exclude ".claude/*" --exclude "*.py" --exclude "*.ps1" `
     --exclude "README.md" --exclude ".gitattributes" --exclude "*.md" `
-    --exclude "*.pdf" --exclude "Thumbs.db" --exclude "*/Thumbs.db" `
+    --exclude "obras/*" --exclude "*.pdf" --exclude "Thumbs.db" --exclude "*/Thumbs.db" `
     --delete
 
   # HTML/JS precisam de cache-control para o 3DVista nunca servir versao cacheada
@@ -53,6 +53,7 @@ else {
   Copy-Html 'video-gallery.html'
   Copy-Html 'diferenciais.html'
   Copy-Html 'galeria-360.html'
+  Copy-Html 'obras.html'
 }
 
 Write-Host 'Deploy concluido.' -ForegroundColor Green

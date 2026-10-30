@@ -14,6 +14,7 @@ Galeria de imagens/plantas/vídeos para injeção via script no 3DVista, hospeda
 | Galeria | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/index.html` |
 | Vídeos  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/video-gallery.html` |
 | 360°    | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/galeria-360.html` |
+| Obras  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/obras.html` |
 | Script  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/inject.js` |
 
 **S3 path:** `s3://skylineip/Tour Virtual/rsf/galeria-eternity/`
@@ -28,12 +29,15 @@ galeria-rsf-eternity/
 ├── video-gallery.html      ← galeria de vídeos
 ├── galeria-360.html        ← galeria de panoramas 360° (setas pulsantes + editor)
 ├── diferenciais.html       ← ficha de diferenciais (scroll)
+├── obras.html              ← andamento da obra (só Eternity; dados embutidos)
+├── obras/                  ← fonte original com TODOS os projetos (não vai para git nem S3)
 ├── inject.js               ← loader leve para injeção no 3DVista
 ├── deploy.ps1              ← deploy para o S3 (Windows; sync)
 ├── generate_thumbs.ps1     ← gerador de thumbnails/large (Windows/GDI+, sem deps)
 └── assets/
     ├── IMAGENS/              ← renders (JPG originais, só no S3)
     ├── PLANTAS/              ← plantas e implantações (JPG originais, só no S3)
+    ├── obras/                ← foto do empreendimento usada em obras.html
     ├── VIDEO/                ← vídeo .mp4 (gitignored; direto no S3)
     ├── thumbs/               ← gerado (900 px) — vai para o git e S3
     ├── large/                ← gerado (2560 px, lightbox) — vai para o git e S3
@@ -185,6 +189,12 @@ Galeria360(1);
 
 // Fecha a galeria 360°
 Galeria360(0);
+
+// Abre o andamento da obra (obras.html — só Eternity Residence)
+AbrirObras(1);
+
+// Fecha o andamento da obra
+AbrirObras(0);
 ```
 
 ---
@@ -213,6 +223,18 @@ Os títulos dos locais ficam no array `SCENES` do HTML.
 3. As edições ficam salvas no navegador (localStorage). Ao terminar, clique em **Copiar configuração** e cole o resultado no `const LINKS = {...}` do HTML; depois rode o deploy.
 
 Para abrir direto num local: `galeria-360.html?scene=s05`.
+
+---
+
+## Andamento da Obra (`obras.html`)
+
+Painel de progresso físico **exclusivo do Eternity Residence** (não há seletor de obra; os dados dos demais projetos não são incluídos no arquivo). Mostra avanço acumulado, avanço no mês, desvio real × tendência, % por atividade (14 etapas) e gráfico dos últimos 9 meses. Único filtro: **período de referência** (mês/ano + setas). Tema terracota `#BC6C49`, página única sem dependências (gráfico em SVG próprio).
+
+- **Fonte:** `obras/PROGRESSO-OBRAS-TODOS.html` (planilha de todos os projetos — ignorada pelo git e excluída do S3).
+- **Dados:** constante `DATA` no início do `<script>` de `obras.html` (`obras`, `atividades`, `evolucao`). A cada medição, acrescente as linhas do novo mês (`evolucao`: `mes`, `tendencia`, `real`; `atividades`: 14 linhas com `mes`, `ordem`, `atividade`, `realizado`, `casas_decimais`), atualize `avanco_fisico` e `mes_referencia` em `obras` e a data `GERADO_EM`. O eixo Y usa `eixo_max`/`eixo_passo`.
+- **Foto:** `assets/obras/eternity.jpg`.
+- **3DVista:** `AbrirObras(1)` abre / `AbrirObras(0)` fecha (ver *Integração 3DVista*). O botão de fechar envia `closeGallery` ao 3DVista, como as demais telas.
+- **Deploy:** `./deploy.ps1` (ou `aws s3 cp obras.html ... --cache-control no-cache`).
 
 ---
 

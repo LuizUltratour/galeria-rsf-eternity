@@ -23,3 +23,6 @@ assets/360/*.png
 # Originais JPG (10-36 MB cada) — so no S3; no git ficam thumbs/ e large/
 assets/IMAGENS/*.jpg
 assets/PLANTAS/*.jpg
+
+# Fonte das obras (todos os projetos) — nao publicar; so o obras.html (Eternity) sobe
+obras/

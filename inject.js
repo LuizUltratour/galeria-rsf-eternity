@@ -5,6 +5,7 @@
   var VIDEO_GALLERY_URL  = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/video-gallery.html';
   var GALERIA_360_URL    = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/galeria-360.html';
   var DIFERENCIAIS_URL   = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/diferenciais.html';
+  var OBRAS_URL          = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/rsf/galeria-eternity/obras.html';
 
   var overlay    = null;
   var msgHandler = null;
@@ -140,6 +141,33 @@
     var iframe = d.createElement('iframe');
     iframe.src = DIFERENCIAIS_URL + '?v=' + Date.now();
     iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;background:#BC6C49;';
+    iframe.setAttribute('allow', 'fullscreen');
+
+    overlay.appendChild(iframe);
+    d.body.appendChild(overlay);
+
+    msgHandler = function (e) {
+      if (e.data && e.data.action === 'closeGallery') _close();
+    };
+    w.addEventListener('message', msgHandler);
+  };
+
+  // AbrirObras(1) → abre o andamento da obra (obras.html — somente Eternity Residence)
+  // AbrirObras(0) → fecha
+  w.AbrirObras = function (show) {
+    if (show !== 1) { _close(); return; }
+    if (overlay) _close();
+    _injectStyles();
+
+    overlay = d.createElement('div');
+    overlay.id = '_gc_overlay';
+    overlay.style.cssText =
+      'position:fixed;inset:0;z-index:2147483646;' +
+      'animation:_gcIn 0.3s ease both;';
+
+    var iframe = d.createElement('iframe');
+    iframe.src = OBRAS_URL + '?v=' + Date.now();
+    iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;background:#F7F0EA;';
     iframe.setAttribute('allow', 'fullscreen');
 
     overlay.appendChild(iframe);

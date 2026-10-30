@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Andamento da Obra — RSF Eternity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing:border-box; }
+:root {
+  /* RSF Eternity — terracota #BC6C49 */
+  --brand:#BC6C49; --brand-d:#9A5233; --brand-dd:#6E3720; --peach:#F3C9B1; --peach-t:#FBE6D8;
+  --ink:#3A2418; --muted:#8A6F60; --line:#F0E4DB; --track:#F3E8E0; --bg:#F7F0EA;
+  --real:#BC6C49; --tend:#6E3720;
+}
+html,body { margin:0; padding:0; background:var(--bg); min-height:100%; }
+body { font-family:Inter,"Helvetica Neue",Arial,"Segoe UI",system-ui,sans-serif; font-variant-numeric:tabular-nums; color:var(--ink); }
+.rsf { max-width:1920px; margin:0 auto; min-height:100vh; display:flex; flex-direction:column; }
+
+/* ── Topo ── */
+.rsf-top { position:relative; display:flex; align-items:center; gap:clamp(14px,2vw,40px); background:linear-gradient(100deg,var(--brand-d) 0%,var(--brand) 55%,#C9805E 100%); color:#fff; padding:0 clamp(16px,2.4vw,40px) 0 0; min-height:clamp(84px,7.5vw,112px); border-bottom:6px solid var(--peach); flex-wrap:wrap; box-shadow:0 10px 30px rgba(110,55,32,.22); }
+.rsf-logo { align-self:stretch; display:flex; align-items:center; background:var(--brand-dd); padding:0 clamp(40px,4.5vw,76px) 0 clamp(20px,3vw,56px); clip-path:polygon(0 0,100% 0,calc(100% - 34px) 100%,0 100%); font-weight:900; font-size:clamp(36px,4.4vw,72px); letter-spacing:.01em; line-height:1; }
+.rsf-titles { flex:1 1 300px; padding:14px 0; min-width:0; }
+.rsf-titles h1 { margin:0; font-size:clamp(22px,2.35vw,44px); font-weight:800; line-height:1.1; letter-spacing:-.005em; }
+.rsf-sub { margin:6px 0 0; font-size:clamp(12px,1vw,17px); letter-spacing:.2em; text-transform:uppercase; color:var(--peach-t); font-weight:500; }
+.rsf-filters { display:flex; align-items:flex-end; gap:clamp(10px,1.2vw,18px); padding:12px 0; flex-wrap:wrap; margin-left:auto; }
+.rsf-pick { display:flex; flex-direction:column; gap:4px; }
+.rsf-pick > span { white-space:nowrap; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--peach-t); font-weight:600; }
+.rsf-period { display:flex; align-items:center; height:42px; border:1px solid rgba(255,255,255,.4); border-radius:999px; background:rgba(255,255,255,.12); overflow:hidden; -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); }
+.rsf-period:focus-within { border-color:#fff; }
+.rsf-step { all:unset; box-sizing:border-box; width:38px; height:100%; display:grid; place-items:center; cursor:pointer; color:#fff; }
+.rsf-step:hover:not([disabled]) { background:rgba(255,255,255,.18); }
+.rsf-step[disabled] { opacity:.32; cursor:default; }
+.rsf-step:focus-visible { outline:3px solid var(--peach); outline-offset:-3px; }
+.rsf-step.l { border-right:1px solid rgba(255,255,255,.25); }
+.rsf-step.r { border-left:1px solid rgba(255,255,255,.25); }
+.rsf-period select { appearance:none; -webkit-appearance:none; font:inherit; font-size:15px; font-weight:700; color:#fff; background-color:transparent; border:0; height:100%; cursor:pointer; padding:0 22px 0 14px; flex:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%23FBE6D8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 6px center; }
+.rsf-period select:hover { background-color:rgba(255,255,255,.1); }
+.rsf-period select:focus-visible { outline:3px solid var(--peach); outline-offset:-3px; }
+.rsf-period select option { color:var(--ink); background:#fff; font-weight:500; }
+.rsf-period .sl { color:var(--peach-t); font-weight:600; }
+.rsf-period .ms { width:10.6em; } #rsf-ano { width:5.4em; }
+#btn-close { flex:none; align-self:center; border:none; padding:0; width:45px; height:45px; cursor:pointer; background:url(assets/close-normal.png) center/100% 100% no-repeat; }
+#btn-close:active { background-image:url(assets/close-hover.png); }
+@media (hover:hover) { #btn-close:hover { background-image:url(assets/close-hover.png); } }
+
+/* ── Corpo ── */
+.rsf-body { flex:1; display:grid; grid-template-columns:minmax(250px,.58fr) 1fr 1fr; grid-template-rows:auto 1fr; gap:clamp(14px,1.4vw,24px); padding:clamp(14px,2vw,32px); }
+.rsf-hero { grid-row:1 / span 2; position:relative; overflow:hidden; background:linear-gradient(170deg,var(--brand) 0%,var(--brand-d) 62%,var(--brand-dd) 100%); color:#fff; border-radius:20px; padding:clamp(18px,1.8vw,30px) clamp(18px,1.6vw,26px) clamp(18px,1.8vw,28px); display:flex; flex-direction:column; align-items:center; text-align:center; min-width:0; box-shadow:0 14px 34px rgba(110,55,32,.28); }
+.rsf-hero::after { content:''; position:absolute; right:-70px; top:-70px; width:220px; height:220px; border-radius:50%; background:rgba(255,255,255,.07); pointer-events:none; }
+.rsf-k1 { margin:0; font-size:13px; letter-spacing:.24em; text-transform:uppercase; color:var(--peach-t); }
+.rsf-k2 { margin:4px 0 clamp(14px,1.4vw,22px); font-size:clamp(18px,1.55vw,26px); font-weight:800; text-transform:uppercase; letter-spacing:.01em; }
+.rsf-photo { position:relative; width:100%; aspect-ratio:460/582; border-radius:14px; overflow:hidden; background:rgba(255,255,255,.1); box-shadow:0 10px 26px rgba(0,0,0,.25); }
+.rsf-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+.rsf-hero-txt { position:relative; flex:1; display:flex; flex-direction:column; justify-content:flex-end; width:100%; padding-top:clamp(18px,2vw,32px); }
+.rsf-name { margin:0; font-size:clamp(20px,1.7vw,30px); font-weight:700; line-height:1.18; }
+.rsf-per { margin:8px 0 0; font-size:13px; color:var(--peach-t); letter-spacing:.02em; }
+.rsf-per b { color:#fff; font-weight:700; }
+.rsf-big { margin:clamp(6px,1vw,14px) 0 clamp(10px,1vw,16px); font-weight:800; font-size:clamp(48px,4.6vw,86px); line-height:1; letter-spacing:-.02em; }
+.rsf-big sup { font-size:.4em; font-weight:700; vertical-align:top; position:relative; top:.05em; margin-left:2px; }
+.rsf-htrack { height:12px; border-radius:6px; background:rgba(255,255,255,.2); overflow:hidden; }
+.rsf-hfill { height:100%; width:100%; background:linear-gradient(90deg,var(--peach),#fff); border-radius:6px; transform-origin:left center; transform:scaleX(0); }
+.rsf-k3 { margin:12px 0 0; font-size:clamp(12px,.95vw,15px); letter-spacing:.18em; text-transform:uppercase; color:#fff; opacity:.92; }
+.rsf-note { margin:10px 0 0; font-size:12px; color:var(--peach-t); line-height:1.4; }
+.rsf-mini { display:grid; grid-template-columns:1fr; gap:6px; margin-top:14px; text-align:left; }
+.rsf-mini > div { display:flex; align-items:center; justify-content:space-between; gap:10px; background:rgba(255,255,255,.12); border-radius:10px; padding:9px 13px; min-width:0; }
+.rsf-mini .l { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--peach-t); }
+.rsf-mini .v { font-size:clamp(15px,1.15vw,18px); font-weight:800; white-space:nowrap; }
+.rsf-mini .v.pos { color:#C4F2D4; } .rsf-mini .v.neg { color:#FFD6CC; }
+
+.rsf-card { background:#fff; border-radius:20px; box-shadow:0 1px 2px rgba(110,55,32,.06),0 10px 28px rgba(110,55,32,.08); padding:clamp(14px,1.4vw,24px) clamp(16px,1.6vw,28px); min-width:0; }
+.rsf-tbl { width:100%; border-collapse:collapse; }
+.rsf-tbl th { font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); text-align:left; padding:0 0 10px; border-bottom:2px solid var(--brand); }
+.rsf-tbl th.r { text-align:right; }
+.rsf-tbl td { padding:0; height:clamp(36px,2.7vw,46px); border-bottom:1px solid var(--line); font-size:clamp(14px,1.05vw,17px); white-space:nowrap; }
+.rsf-tbl tr:last-child td { border-bottom:0; }
+.rsf-tbl td.o { color:var(--brand); font-weight:700; width:2.1em; padding-right:4px; }
+.rsf-tbl td.n { overflow:hidden; text-overflow:ellipsis; max-width:0; width:52%; }
+.rsf-tbl td.v { text-align:right; }
+.rsf-v { display:flex; align-items:center; justify-content:flex-end; gap:clamp(10px,1.4vw,28px); }
+.rsf-track { flex:0 1 160px; min-width:50px; height:8px; border-radius:4px; background:var(--track); overflow:hidden; }
+.rsf-fill { height:100%; width:100%; background:linear-gradient(90deg,var(--brand),#D98B67); border-radius:4px; transform-origin:left center; transform:scaleX(0); }
+.rsf-num { min-width:4.4em; font-weight:700; color:var(--brand-d); }
+.rsf-msg td { text-align:center; vertical-align:middle; color:var(--muted); font-size:14px; white-space:normal; line-height:1.5; }
+.rsf-msg strong { display:block; color:var(--brand-d); font-size:15px; }
+
+.rsf-chartcard { grid-column:2 / span 2; position:relative; display:flex; flex-direction:column; }
+.rsf-ch { display:flex; align-items:baseline; flex-wrap:wrap; gap:6px 14px; margin-bottom:6px; }
+.rsf-ch h2 { margin:0; font-size:clamp(17px,1.4vw,24px); font-weight:800; color:var(--brand-d); }
+.rsf-ch .s { color:var(--muted); font-size:clamp(13px,1vw,16px); }
+.rsf-legend { margin-left:auto; display:flex; gap:18px; flex-wrap:wrap; font-size:clamp(13px,1vw,16px); }
+.rsf-legend i { display:inline-block; width:14px; height:14px; border-radius:4px; vertical-align:-2px; margin-right:7px; }
+.rsf-legend .ln { display:inline-block; width:30px; height:14px; vertical-align:-2px; margin-right:7px; }
+.rsf-gap { width:100%; margin:0; font-size:12px; color:var(--muted); }
+.rsf-plot { position:relative; flex:1; min-height:300px; }
+.rsf-plot svg { display:block; overflow:visible; }
+.rsf-tip { position:absolute; pointer-events:none; background:#fff; border:1px solid #EBD8CB; border-radius:10px; box-shadow:0 8px 24px rgba(110,55,32,.18); padding:8px 11px; font-size:12.5px; line-height:1.5; white-space:nowrap; opacity:0; transition:opacity .12s; z-index:2; }
+.rsf-tip b { display:block; color:var(--brand-d); font-weight:700; margin-bottom:2px; }
+.rsf-tip i { display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:6px; }
+.rsf-nodata { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; color:var(--muted); font-size:14px; text-align:center; }
+.rsf-nodata strong { color:var(--brand-d); font-size:16px; }
+.rsf-foot { margin:0; padding:0 clamp(14px,2vw,32px) clamp(14px,1.6vw,24px); font-size:12px; color:var(--muted); }
+
+@media (max-width:1100px) {
+  .rsf-body { grid-template-columns:1fr 1fr; }
+  .rsf-hero { grid-row:auto; grid-column:1 / -1; flex-direction:row; text-align:left; gap:24px; align-items:stretch; }
+  .rsf-hero-head { display:none; }
+  .rsf-photo { width:clamp(140px,26%,240px); flex:none; }
+  .rsf-hero-txt { padding-top:0; justify-content:center; }
+  .rsf-chartcard { grid-column:1 / -1; }
+}
+@media (max-width:720px) {
+  .rsf-body { grid-template-columns:1fr; }
+  .rsf-titles { padding:10px 20px 4px; }
+  .rsf-filters { width:100%; padding:0 0 14px 20px; }
+  .rsf-period { width:100%; } .rsf-period .ms { flex:1; width:auto; min-width:0; }
+  #btn-close { position:absolute; top:12px; right:12px; }
+  .rsf-msg td { height:auto !important; padding:28px 0; }
+  .rsf-card.is-empty + .rsf-card.is-empty { display:none; }
+  .rsf-legend { margin-left:0; }
+  .rsf-hero { gap:16px; }
+  .rsf-photo { width:34%; }
+}
+</style>
+</head>
+<body>
+<div class="rsf" id="painel">
+  <header class="rsf-top">
+    <div class="rsf-logo" aria-hidden="true">RSF</div>
+    <div class="rsf-titles">
+      <h1>Andamento da Obra – Situação Atual</h1>
+      <p class="rsf-sub">Eternity Residence</p>
+    </div>
+    <div class="rsf-filters" id="filtros">
+      <div class="rsf-pick" role="group" aria-labelledby="rsf-per-lab">
+        <span id="rsf-per-lab">Período de Referência</span>
+        <div class="rsf-period">
+          <button type="button" class="rsf-step l" id="rsf-prev" aria-label="Período anterior"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+          <select id="rsf-mes" class="ms" aria-label="Mês de referência"></select>
+          <span class="sl" aria-hidden="true">/</span>
+          <select id="rsf-ano" aria-label="Ano de referência"></select>
+          <button type="button" class="rsf-step r" id="rsf-next" aria-label="Próximo período"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <button id="btn-close" title="Fechar" aria-label="Fechar"></button>
+  </header>
+
+  <div class="rsf-body">
+    <aside class="rsf-hero" id="resumo">
+      <div class="rsf-hero-head"><p class="rsf-k1">Físico</p><p class="rsf-k2">Real + Tendência</p></div>
+      <div class="rsf-photo"><img id="rsf-img" src="assets/obras/eternity.jpg" alt="Perspectiva do empreendimento Eternity Residence"></div>
+      <div class="rsf-hero-txt">
+        <h2 class="rsf-name">Eternity Residence</h2>
+        <p class="rsf-per" id="rsf-per" aria-live="polite"></p>
+        <div class="rsf-big"><span id="rsf-big">—</span><sup>%</sup></div>
+        <div class="rsf-htrack"><div class="rsf-hfill" id="rsf-hfill"></div></div>
+        <p class="rsf-k3">Avanço físico acumulado</p>
+        <div class="rsf-mini">
+          <div title="Avanço real acumulado no período menos o do mês anterior"><span class="l">No mês</span><span class="v" id="rsf-vmes">—</span></div>
+          <div title="Real acumulado menos tendência acumulada no período"><span class="l">Real x Tendência</span><span class="v" id="rsf-vdesv">—</span></div>
+        </div>
+        <p class="rsf-note" id="rsf-note" hidden>Último ponto do gráfico (<span id="rsf-note-mes"></span>): <span id="rsf-note-v">—</span>%</p>
+      </div>
+    </aside>
+
+    <section class="rsf-card" id="atividades-a">
+      <table class="rsf-tbl"><thead><tr><th aria-label="Número"></th><th>Atividade</th><th class="r">Realizado</th></tr></thead><tbody id="rsf-tb-a"></tbody></table>
+    </section>
+    <section class="rsf-card" id="atividades-b">
+      <table class="rsf-tbl"><thead><tr><th aria-label="Número"></th><th>Atividade</th><th class="r">Realizado</th></tr></thead><tbody id="rsf-tb-b"></tbody></table>
+    </section>
+
+    <section class="rsf-card rsf-chartcard" id="grafico-avanco">
+      <div class="rsf-ch">
+        <h2>Avanço Físico Acumulado</h2><span class="s" id="rsf-ch-s">Real x Tendência (%)</span>
+        <div class="rsf-legend" aria-hidden="true">
+          <span><i style="background:#6E3720"></i>Tendência</span>
+          <span><i style="background:#BC6C49"></i>Real</span>
+          <span><svg class="ln" viewBox="0 0 30 14"><line x1="1" y1="7" x2="29" y2="7" stroke="#3A2418" stroke-width="2.5" stroke-linecap="round"/><circle cx="15" cy="7" r="4.5" fill="#fff" stroke="#3A2418" stroke-width="2"/></svg>Linha de tendência</span>
+        </div>
+        <p class="rsf-gap" id="rsf-gap" hidden></p>
+      </div>
+      <div class="rsf-plot" id="rsf-plot"></div>
+      <div class="rsf-tip" id="rsf-tip" role="status"></div>
+    </section>
+  </div>
+  <p class="rsf-foot" id="rsf-foot"></p>
+</div>
+
+<script>
+// Dados do Eternity Residence (extraídos de PROGRESSO-OBRAS-TODOS). Atualize os blocos abaixo a cada medição.
+const OBRA = 'Eternity Residence';
+const DATA = {
+  obras: [
+    {"obra":"Eternity Residence","avanco_fisico":10.04,"eixo_max":12,"eixo_passo":2,"mes_referencia":"2026-09"}
+  ],
+  atividades: [
+    {"obra":"Eternity Residence","mes":"2026-09","ordem":1,"atividade":"Preparo do Terreno","realizado":99,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-09","ordem":2,"atividade":"Fundações","realizado":81,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-09","ordem":3,"atividade":"Estrutura","realizado":15,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-09","ordem":4,"atividade":"Alvenaria","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-09","ordem":5,"atividade":"Drywall","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-09","ordem":6,"atividade":"Instalações Hidráulicas","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-09","ordem":7,"atividade":"Instalações Elétricas","realizado":1,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-09","ordem":8,"atividade":"Gesso","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-09","ordem":9,"atividade":"Esquadrias de Alumínio","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-09","ordem":10,"atividade":"Contrapiso / Cerâmica","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-09","ordem":11,"atividade":"Bancadas / Louças e Metais","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-09","ordem":12,"atividade":"Pintura","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-09","ordem":13,"atividade":"Fachada","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-09","ordem":14,"atividade":"Elevadores","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-08","ordem":1,"atividade":"Preparo do Terreno","realizado":99,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-08","ordem":2,"atividade":"Fundações","realizado":81,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-08","ordem":3,"atividade":"Estrutura","realizado":10,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-08","ordem":4,"atividade":"Alvenaria","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-08","ordem":5,"atividade":"Drywall","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-08","ordem":6,"atividade":"Instalações Hidráulicas","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-08","ordem":7,"atividade":"Instalações Elétricas","realizado":1,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-08","ordem":8,"atividade":"Gesso","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-08","ordem":9,"atividade":"Esquadrias de Alumínio","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-08","ordem":10,"atividade":"Contrapiso / Cerâmica","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-08","ordem":11,"atividade":"Bancadas / Louças e Metais","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-08","ordem":12,"atividade":"Pintura","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-08","ordem":13,"atividade":"Fachada","realizado":0,"casas_decimais":0},
+    {"obra":"Eternity Residence","mes":"2026-08","ordem":14,"atividade":"Elevadores","realizado":0,"casas_decimais":0}
+  ],
+  evolucao: [
+    {"obra":"Eternity Residence","mes":"2025-09","tendencia":0.33,"real":0.33},
+    {"obra":"Eternity Residence","mes":"2025-10","tendencia":0.37,"real":1.04},
+    {"obra":"Eternity Residence","mes":"2025-11","tendencia":0.65,"real":1.67},
+    {"obra":"Eternity Residence","mes":"2025-12","tendencia":1.91,"real":1.94},
+    {"obra":"Eternity Residence","mes":"2026-01","tendencia":2.87,"real":2.35},
+    {"obra":"Eternity Residence","mes":"2026-02","tendencia":4.07,"real":3},
+    {"obra":"Eternity Residence","mes":"2026-03","tendencia":4.93,"real":3.88},
+    {"obra":"Eternity Residence","mes":"2026-04","tendencia":4.06,"real":4.58},
+    {"obra":"Eternity Residence","mes":"2026-05","tendencia":5.34,"real":5.93},
+    {"obra":"Eternity Residence","mes":"2026-06","tendencia":6.39,"real":6.74},
+    {"obra":"Eternity Residence","mes":"2026-07","tendencia":6.99,"real":7.88},
+    {"obra":"Eternity Residence","mes":"2026-08","tendencia":7.93,"real":8.91},
+    {"obra":"Eternity Residence","mes":"2026-09","tendencia":8.9,"real":10.04}
+  ]
+};
+const GERADO_EM = '09/10/2026';
+</script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const selMes = $('rsf-mes'), selAno = $('rsf-ano'), btnPrev = $('rsf-prev'), btnNext = $('rsf-next');
+  const MESES = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  const MES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+  const toIdx = (m) => { const [y, mo] = String(m).slice(0, 7).split('-').map(Number); return y * 12 + (mo - 1); };
+  const yOf = (i) => Math.floor(i / 12), mOf = (i) => (i % 12) + 1;
+  const perLabel = (i) => `${MESES[mOf(i) - 1]}/${yOf(i)}`;
+  const shortLabel = (i) => `${MES[mOf(i) - 1]}/${String(yOf(i)).slice(2)}`;
+  const nf = {};
+  const fmt = (v, c) => (nf[c] ||= new Intl.NumberFormat('pt-BR', { minimumFractionDigits: c, maximumFractionDigits: c })).format(v);
+  const fmtPP = (v) => (v > 0 ? '+' : v < 0 ? '−' : '') + fmt(Math.abs(v), 2) + ' p.p.';
+  const reduceMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const EASE_CSS = 'cubic-bezier(0.33, 1, 0.68, 1)';
+  const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+  const T_INIT = { bar: 2000, chart: 2500 }, T_CHANGE = { bar: 1200, chart: 1600 };
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const sv = (tag, attrs, parent) => {
+    const n = document.createElementNS(SVGNS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  };
+
+  // ---------- Dados ----------
+  const cfg = DATA.obras[0];
+  const evol = DATA.evolucao.map((r) => ({ mes: String(r.mes).slice(0, 7), tendencia: Number(r.tendencia), real: Number(r.real) }))
+    .sort((p, q) => toIdx(p.mes) - toIdx(q.mes));
+  const ativ = DATA.atividades.map((r) => ({ ...r, mes: String(r.mes).slice(0, 7), ordem: Number(r.ordem) }));
+  const periods = [...new Set([...evol.map((r) => toIdx(r.mes)), ...ativ.map((r) => toIdx(r.mes))])].sort((p, q) => p - q);
+  const temDado = new Set(periods);
+  // Acumulado real: no mês de referência da obra vale o cartão oficial (avanco_fisico); nos demais, o valor do gráfico
+  const acum = (r) => (toIdx(cfg.mes_referencia) === toIdx(r.mes) ? Number(cfg.avanco_fisico) : r.real);
+  const r2 = (x) => Math.round(x * 100) / 100;
+  const indicador = (i) => {
+    const r = evol.find((x) => toIdx(x.mes) === i); if (!r) return null;
+    const ant = evol.find((x) => toIdx(x.mes) === i - 1), atual = acum(r);
+    return { acumulado_real: atual, avanco_mes: ant ? r2(atual - acum(ant)) : null, desvio: r2(atual - r.tendencia) };
+  };
+
+  let runToken = 0, shownIdx = null, firstDone = false, chartAnimating = false, chartTimer = null, pendingRedraw = null;
+  let periodo = periods[periods.length - 1];
+
+  // ---------- Controles ----------
+  const setPeriodo = (i) => { if (i != null && i !== periodo) { periodo = i; render(); } };
+  selMes.addEventListener('change', () => setPeriodo(Number(selMes.value)));
+  selAno.addEventListener('change', () => {
+    const y = Number(selAno.value), doAno = periods.filter((i) => yOf(i) === y);
+    setPeriodo(doAno.find((i) => mOf(i) === mOf(periodo)) ?? doAno[doAno.length - 1]);
+  });
+  btnPrev.addEventListener('click', () => { const k = periods.indexOf(periodo); if (k > 0) setPeriodo(periods[k - 1]); });
+  btnNext.addEventListener('click', () => { const k = periods.indexOf(periodo); if (k < periods.length - 1) setPeriodo(periods[k + 1]); });
+  $('btn-close').addEventListener('click', () => {
+    if (window.parent !== window) window.parent.postMessage({ action: 'closeGallery' }, '*');
+    else if (history.length > 1) history.back(); else window.close();
+  });
+  let lastW = 0, rt;
+  new ResizeObserver((en) => {
+    const w = Math.round(en[0].contentRect.width); if (w === lastW) return; lastW = w;
+    clearTimeout(rt); rt = setTimeout(() => { if (shownIdx !== null) render(); }, 120);
+  }).observe(document.body);
+
+  // ---------- Animações ----------
+  function countUp(el, to, casas, dur, token, suffix) {
+    const end = fmt(to, casas) + (suffix || '');
+    if (!dur) { el.textContent = end; return; }
+    const t0 = performance.now();
+    const step = (now) => {
+      if (token !== runToken) return;
+      const p = Math.min(1, (now - t0) / dur);
+      el.textContent = p < 1 ? fmt(to * easeOut(p), casas) + (suffix || '') : end;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    el.textContent = fmt(0, casas) + (suffix || '');
+    requestAnimationFrame(step);
+  }
+  function fillBar(el, pct, dur) {
+    const s = Math.max(0, Math.min(1, pct / 100));
+    el.getAnimations().forEach((a) => a.cancel());
+    el.style.transform = `scaleX(${s})`;
+    if (dur) el.animate([{ transform: 'scaleX(0)' }, { transform: `scaleX(${s})` }], { duration: dur, easing: EASE_CSS, fill: 'backwards' });
+  }
+
+  // ---------- Tabelas ----------
+  function renderTable(tbody, rows, dur, token) {
+    tbody.replaceChildren(); tbody.closest('.rsf-card').classList.remove('is-empty');
+    rows.forEach((r) => {
+      const tr = document.createElement('tr');
+      const tdO = document.createElement('td'); tdO.className = 'o'; tdO.textContent = String(r.ordem).padStart(2, '0');
+      const tdN = document.createElement('td'); tdN.className = 'n'; tdN.textContent = r.atividade; tdN.title = r.atividade;
+      const tdV = document.createElement('td'); tdV.className = 'v';
+      const wrap = document.createElement('div'); wrap.className = 'rsf-v';
+      const track = document.createElement('div'); track.className = 'rsf-track'; track.setAttribute('aria-hidden', 'true');
+      const fill = document.createElement('div'); fill.className = 'rsf-fill'; track.append(fill);
+      const num = document.createElement('span'); num.className = 'rsf-num';
+      wrap.append(track, num); tdV.append(wrap); tr.append(tdO, tdN, tdV); tbody.append(tr);
+      fillBar(fill, Number(r.realizado), dur); countUp(num, Number(r.realizado), Number(r.casas_decimais) || 0, dur, token, '%');
+    });
+  }
+  function renderTableEmpty(tbody, nLinhas, texto, sub) {
+    tbody.replaceChildren(); tbody.closest('.rsf-card').classList.add('is-empty');
+    const tr = document.createElement('tr'); tr.className = 'rsf-msg';
+    const td = document.createElement('td'); td.colSpan = 3; td.style.height = `calc(${nLinhas} * clamp(36px, 2.7vw, 46px))`;
+    const s = document.createElement('strong'); s.textContent = texto; td.append(s);
+    if (sub) td.append(document.createTextNode(sub));
+    tr.append(td); tbody.append(tr);
+  }
+
+  // ---------- Gráfico (SVG puro) ----------
+  function drawChart(rows, selIdx, chartMs) {
+    const plot = $('rsf-plot'), tip = $('rsf-tip');
+    plot.replaceChildren(); tip.style.opacity = 0;
+    clearTimeout(chartTimer); chartAnimating = false;
+    const W = Math.max(280, plot.clientWidth || 800);
+    const H = W < 560 ? 300 : Math.round(Math.max(340, Math.min(480, W * 0.27)));
+    plot.style.minHeight = H + 'px';
+    if (!rows.length) {
+      const box = document.createElement('div'); box.className = 'rsf-nodata'; box.style.height = H + 'px';
+      const s = document.createElement('strong'); s.textContent = 'Sem dados para o período';
+      box.append(s, document.createTextNode(`Não há registros desta obra nos 9 meses até ${perLabel(selIdx)}.`)); plot.append(box);
+      return;
+    }
+    const animate = chartMs > 0;
+    const step = Number(cfg.eixo_passo) || 10;
+    const vmax = Math.max(0, ...rows.map((r) => Math.max(r.tendencia, r.real)));
+    const yMax = Math.max(Number(cfg.eixo_max) || 0, Math.ceil(vmax / step) * step, step);
+    const ticks = []; for (let t = 0; t <= yMax + step / 2; t += step) ticks.push(Math.round(t * 100) / 100);
+
+    const svg = sv('svg', { width: '100%', height: H, viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `Avanço físico acumulado por mês até ${perLabel(selIdx)}, tendência e real` }, plot);
+    const measure = (txt, size, weight) => {
+      const t = sv('text', { 'font-size': size, 'font-weight': weight || 400 }, svg); t.textContent = txt;
+      const w = t.getComputedTextLength(); t.remove(); return w;
+    };
+    const left = Math.max(...ticks.map((t) => measure(t + '%', 12))) + 14;
+    const top = measure(fmt(Math.max(vmax, yMax * 0.6), 2), 12, 700) + 12, bottom = 32, right = 6;
+    const N = rows.length, pIn = 0.34, pOut = 0.22;
+    const stepX = (W - right - left) / Math.max(1, N - pIn + pOut * 2), bw = stepX * (1 - pIn);
+    const start = left + ((W - right - left) - stepX * (N - pIn)) * 0.5;
+    const xs = (i) => start + stepX * i;
+    const y = (v) => (H - bottom) - (v / yMax) * ((H - bottom) - top);
+    const barW = Math.max(1, bw / 2 - 1), showVals = barW >= 12;
+    const every = Math.max(1, Math.ceil((measure('mmm/00', 13) + 10) / stepX));
+    const selI = rows.findIndex((r) => toIdx(r.mes) === selIdx);
+
+    const g = sv('g', {}, svg);
+    if (selI >= 0) sv('rect', { x: xs(selI) - stepX * pIn / 2, width: stepX, y: top - 4, height: y(0) - top + 4, rx: 8, fill: '#BC6C49', opacity: 0.09 }, g);
+    ticks.forEach((t) => {
+      sv('line', { x1: left - 4, x2: W - right, y1: y(t), y2: y(t), stroke: t === 0 ? '#DCC6B8' : '#F3E8E0', 'stroke-width': t === 0 ? 1.5 : 1 }, g);
+      const tx = sv('text', { x: left - 12, y: y(t), dy: '0.35em', 'text-anchor': 'end', 'font-size': 12, fill: '#A48B7C' }, g); tx.textContent = t + '%';
+    });
+
+    const DUR = Math.min(700, chartMs * 0.4 || 700);
+    const stagger = N > 1 && animate ? Math.min(160, (chartMs - DUR) / (N - 1)) : 0;
+    const anim = (el, kf, delay, dur) => { if (animate) el.animate(kf, { duration: dur, delay, easing: EASE_CSS, fill: 'backwards' }); };
+
+    rows.forEach((r, i) => {
+      const x0 = xs(i), d = i * stagger, isSel = i === selI;
+      [['tendencia', x0, '#6E3720', '#6E3720'], ['real', x0 + bw / 2 + 1, '#BC6C49', '#A85A39']].forEach(([k, bx, fill, tc]) => {
+        const v = r[k], yy = y(v);
+        const rect = sv('rect', { x: bx, y: yy, width: barW, height: Math.max(0, y(0) - yy), rx: Math.min(4, barW / 3), fill }, g);
+        rect.style.transformBox = 'fill-box'; rect.style.transformOrigin = '50% 100%';
+        anim(rect, [{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }], d, DUR);
+        if (showVals) {
+          const t = sv('text', { transform: `translate(${bx + barW / 2},${yy - 6}) rotate(-90)`, dy: '0.35em', 'font-size': 12, 'font-weight': isSel ? 800 : 700, fill: tc }, g);
+          t.textContent = fmt(v, 2);
+          anim(t, [{ opacity: 0 }, { opacity: 1 }], d + DUR * 0.6, DUR * 0.4);
+        }
+      });
+      const lbl = sv('text', { x: x0 + bw / 2, y: H - bottom + 21, 'text-anchor': 'middle', 'font-size': 13, fill: isSel ? '#9A5233' : '#7A6458', 'font-weight': isSel ? 700 : 400 }, g);
+      lbl.textContent = shortLabel(toIdx(r.mes));
+      if (every > 1 && i !== N - 1 && (N - 1 - i) % every !== 0) lbl.setAttribute('display', 'none');
+    });
+
+    const pts = rows.map((r, i) => [xs(i) + bw / 2, y(r.tendencia)]);
+    const path = sv('path', { d: 'M' + pts.map((p) => p.join(',')).join('L'), fill: 'none', stroke: '#3A2418', 'stroke-width': 2.5, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, g);
+    if (animate && N > 1) {
+      const L = path.getTotalLength();
+      path.setAttribute('stroke-dasharray', L);
+      path.animate([{ strokeDashoffset: L }, { strokeDashoffset: 0 }], { duration: (N - 1) * stagger + DUR * 0.6, delay: DUR * 0.4, easing: 'linear', fill: 'both' })
+        .finished.then(() => path.removeAttribute('stroke-dasharray')).catch(() => {});
+    }
+    pts.forEach((p, i) => {
+      const c = sv('circle', { cx: p[0], cy: p[1], r: 5, fill: '#fff', stroke: '#3A2418', 'stroke-width': 2.2 }, g);
+      anim(c, [{ opacity: 0 }, { opacity: 1 }], i * stagger + DUR * 0.4, DUR * 0.4);
+    });
+
+    const hl = sv('rect', { y: top, height: y(0) - top, fill: '#BC6C49', opacity: 0, 'pointer-events': 'none' }, g);
+    rows.forEach((r, i) => {
+      const hit = sv('rect', { x: xs(i) - stepX * pIn / 2, width: stepX, y: top, height: y(0) - top, fill: 'transparent' }, g);
+      hit.addEventListener('pointermove', () => {
+        hl.setAttribute('x', xs(i) - 4); hl.setAttribute('width', bw + 8); hl.setAttribute('opacity', 0.07);
+        tip.replaceChildren();
+        const b = document.createElement('b'); b.textContent = perLabel(toIdx(r.mes)); tip.append(b);
+        [['Tendência', r.tendencia, '#6E3720'], ['Real', r.real, '#BC6C49']].forEach(([n, v, c]) => {
+          const ln = document.createElement('div'), sw = document.createElement('i'); sw.style.background = c;
+          ln.append(sw, document.createTextNode(`${n}: ${fmt(v, 2)}%`)); tip.append(ln);
+        });
+        const card = $('grafico-avanco').getBoundingClientRect(), pr = plot.getBoundingClientRect(), scale = pr.width / W;
+        let tx = pr.left - card.left + (xs(i) + bw + 12) * scale;
+        const ty = pr.top - card.top + y(Math.max(r.tendencia, r.real)) * scale - 10;
+        tip.style.opacity = 1;
+        const tw = tip.offsetWidth;
+        if (tx + tw > card.width - 8) tx = pr.left - card.left + (xs(i) - 12) * scale - tw;
+        tip.style.left = Math.max(8, tx) + 'px'; tip.style.top = Math.max(8, ty) + 'px';
+      });
+      hit.addEventListener('pointerleave', () => { hl.setAttribute('opacity', 0); tip.style.opacity = 0; });
+    });
+
+    if (animate) {
+      chartAnimating = true;
+      chartTimer = setTimeout(() => { chartAnimating = false; if (pendingRedraw) { const f = pendingRedraw; pendingRedraw = null; f(); } }, chartMs + 100);
+    }
+  }
+
+  // ---------- Render principal ----------
+  function render() {
+    const sel = periodo;
+    // Controles de período
+    selAno.replaceChildren(...[...new Set(periods.map(yOf))].map((y) => new Option(String(y), String(y))));
+    selAno.value = String(yOf(sel));
+    selMes.replaceChildren(...periods.filter((i) => yOf(i) === yOf(sel)).map((i) => new Option(MESES[mOf(i) - 1] + (temDado.has(i) ? '' : ' · sem dados'), String(i))));
+    selMes.value = String(sel);
+    btnPrev.disabled = periods.indexOf(sel) <= 0;
+    btnNext.disabled = periods.indexOf(sel) >= periods.length - 1;
+
+    const ind = indicador(sel);
+    const doMes = ativ.filter((r) => toIdx(r.mes) === sel).sort((p, q) => p.ordem - q.ordem);
+    const JANELA = 9;
+    const hist = evol.filter((r) => toIdx(r.mes) <= sel && toIdx(r.mes) > sel - JANELA);
+    const cortado = evol.some((r) => toIdx(r.mes) <= sel - JANELA);
+
+    const changed = sel !== shownIdx;
+    const T = !firstDone ? T_INIT : T_CHANGE;
+    const barMs = changed && !reduceMQ.matches ? T.bar : 0;
+    const chartMs = changed && !reduceMQ.matches ? T.chart : 0;
+
+    if (changed) {
+      shownIdx = sel; runToken++; firstDone = true;
+      const tok = runToken;
+      const per = $('rsf-per'); per.replaceChildren();
+      const big = $('rsf-big'), vm = $('rsf-vmes'), vd = $('rsf-vdesv');
+      if (ind) {
+        per.append('Referência: '); const b = document.createElement('b'); b.textContent = perLabel(sel); per.append(b);
+        countUp(big, ind.acumulado_real, 2, barMs, tok, ''); fillBar($('rsf-hfill'), ind.acumulado_real, barMs);
+        vm.textContent = ind.avanco_mes == null ? '—' : fmtPP(ind.avanco_mes);
+        vm.parentElement.title = ind.avanco_mes == null ? 'Mês anterior sem registro na base' : 'Avanço real acumulado no período menos o do mês anterior';
+        vd.textContent = fmtPP(ind.desvio); vd.className = 'v ' + (ind.desvio > 0 ? 'pos' : ind.desvio < 0 ? 'neg' : '');
+      } else {
+        per.append('Sem dados para '); const b = document.createElement('b'); b.textContent = perLabel(sel); per.append(b);
+        big.textContent = '—'; fillBar($('rsf-hfill'), 0, 0);
+        vm.textContent = '—'; vd.textContent = '—'; vd.className = 'v';
+      }
+      // Divergência cartão x gráfico no mesmo mês
+      const pt = evol.find((r) => toIdx(r.mes) === sel), note = $('rsf-note');
+      if (ind && pt && Math.abs(pt.real - ind.acumulado_real) > 0.0001) {
+        note.hidden = false; $('rsf-note-mes').textContent = shortLabel(sel); $('rsf-note-v').textContent = fmt(pt.real, 2);
+      } else note.hidden = true;
+      // Atividades
+      const nAtiv = new Set(ativ.map((r) => r.ordem)).size || 14;
+      const half = Math.ceil((doMes.length || nAtiv) / 2);
+      if (doMes.length) {
+        renderTable($('rsf-tb-a'), doMes.slice(0, half), barMs, tok);
+        renderTable($('rsf-tb-b'), doMes.slice(half), barMs, tok);
+      } else {
+        const ult = [...new Set(ativ.map((r) => toIdx(r.mes)))].sort((p, q) => p - q);
+        renderTableEmpty($('rsf-tb-a'), half, 'Sem dados para o período', ult.length ? `Avanço por atividade registrado apenas em: ${ult.map(perLabel).join(', ')}.` : '');
+        renderTableEmpty($('rsf-tb-b'), nAtiv - half, 'Sem dados para o período', '');
+      }
+      // Notas do gráfico
+      $('rsf-ch-s').textContent = `Real x Tendência (%) · ${cortado ? 'últimos 9 meses até' : 'até'} ${perLabel(sel)}`;
+      const gap = $('rsf-gap'), notas = [];
+      if (hist.length > 1) {
+        const have = new Set(hist.map((r) => toIdx(r.mes))), miss = [];
+        for (let i = toIdx(hist[0].mes); i < toIdx(hist[hist.length - 1].mes); i++) if (!have.has(i)) miss.push(shortLabel(i));
+        if (miss.length) notas.push('Sem registro na fonte: ' + miss.join(', '));
+      }
+      if (hist.length && !pt) notas.push(`Sem registro em ${perLabel(sel)} para esta obra; exibindo o histórico anterior`);
+      gap.hidden = !notas.length; gap.textContent = notas.join(' · ');
+    }
+    if (changed || !chartAnimating) { pendingRedraw = null; drawChart(hist, sel, chartMs); }
+    else pendingRedraw = () => drawChart(hist, sel, 0);
+  }
+
+  const ultAtiv = [...new Set(ativ.map((r) => toIdx(r.mes)))].sort((p, q) => p - q);
+  $('rsf-foot').textContent = `Dados de referência até ${shortLabel(periods[periods.length - 1])} (atividades: ${ultAtiv.map(shortLabel).join(' e ')}). Atualizado em ${GERADO_EM}. Uso interno.`;
+  render();
+})();
+</script>
+</body>
+</html>
