@@ -127,9 +127,14 @@
       overflow-y: auto;
       scroll-behavior: smooth;
     }
-    #vg-scroll::-webkit-scrollbar { width: 5px; }
-    #vg-scroll::-webkit-scrollbar-track { background: var(--bg); }
-    #vg-scroll::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+
+    /* ── Barra de rolagem: fina, em pílula, cor do projeto ── */
+    #vg-scroll { scrollbar-width: thin; scrollbar-color: rgba(255,248,241,0.75) transparent; }
+    #vg-scroll::-webkit-scrollbar { width: 12px; height: 12px; }
+    #vg-scroll::-webkit-scrollbar-track { background: rgba(110,55,32,0.18); margin: 6px 0; }
+    #vg-scroll::-webkit-scrollbar-thumb { background: rgba(255,248,241,0.75); background-clip: padding-box; border: 4px solid transparent; border-radius: 999px; min-height: 48px; transition: background 0.2s; }
+    #vg-scroll::-webkit-scrollbar-thumb:hover { background: #FFF8F1; background-clip: padding-box; border-width: 3px; }
+    #vg-scroll::-webkit-scrollbar-corner { background: transparent; }
 
     #vg-grid {
       display: grid;

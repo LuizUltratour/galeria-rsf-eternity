@@ -878,8 +878,14 @@
     .g-card.is-plant img { flex: 1; min-height: 0; object-fit: contain; padding: 10px 10px 0; }
     .g-card.is-plant .card-overlay { position: static; padding: 11px 18px 12px; background: var(--bg); }
     #g-disclaimer { color: var(--dark); opacity: 0.7; }
-    #g-scroll::-webkit-scrollbar-track { background: transparent; }
-    #g-scroll::-webkit-scrollbar-thumb { background: rgba(255,248,241,0.55); }
+
+    /* ── Barra de rolagem: fina, em pílula, cor do projeto ── */
+    #g-scroll, #lb-dual { scrollbar-width: thin; scrollbar-color: rgba(255,248,241,0.75) transparent; }
+    #g-scroll, #lb-dual::-webkit-scrollbar { width: 12px; height: 12px; }
+    #g-scroll, #lb-dual::-webkit-scrollbar-track { background: rgba(110,55,32,0.18); margin: 6px 0; }
+    #g-scroll, #lb-dual::-webkit-scrollbar-thumb { background: rgba(255,248,241,0.75); background-clip: padding-box; border: 4px solid transparent; border-radius: 999px; min-height: 48px; transition: background 0.2s; }
+    #g-scroll, #lb-dual::-webkit-scrollbar-thumb:hover { background: #FFF8F1; background-clip: padding-box; border-width: 3px; }
+    #g-scroll, #lb-dual::-webkit-scrollbar-corner { background: transparent; }
     #g-disclaimer { color: var(--text-soft); }
 
     /* ── Setas anterior / próximo (imagens) ── */

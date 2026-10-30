@@ -16,6 +16,14 @@
   --ink:#3A2418; --muted:#8A6F60; --line:#F0E4DB; --track:#F3E8E0; --bg:#F7F0EA;
   --real:#BC6C49; --tend:#6E3720;
 }
+
+/* ── Barra de rolagem: fina, em pílula, cor do projeto ── */
+html { scrollbar-width: thin; scrollbar-color: #BC6C49 transparent; }
+html::-webkit-scrollbar { width: 12px; height: 12px; }
+html::-webkit-scrollbar-track { background: rgba(188,108,73,0.10); margin: 6px 0; }
+html::-webkit-scrollbar-thumb { background: #BC6C49; background-clip: padding-box; border: 4px solid transparent; border-radius: 999px; min-height: 48px; transition: background 0.2s; }
+html::-webkit-scrollbar-thumb:hover { background: #9A5233; background-clip: padding-box; border-width: 3px; }
+html::-webkit-scrollbar-corner { background: transparent; }
 html,body { margin:0; padding:0; background:var(--bg); min-height:100%; }
 body { font-family:Inter,"Helvetica Neue",Arial,"Segoe UI",system-ui,sans-serif; font-variant-numeric:tabular-nums; color:var(--ink); }
 .rsf { max-width:1920px; margin:0 auto; min-height:100vh; display:flex; flex-direction:column; }
